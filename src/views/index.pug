@@ -1,0 +1,99 @@
+html
+  head
+    title= title
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous")
+  body
+    .container
+      h3=sub_titile
+      div#content-table
+        table(border='1px').table.table-bordered.table-striped
+          div#content-table
+          thead
+            tr
+              th ID
+              th Full Name
+              th Email
+              th Item
+              th Quantity
+              th Total Price
+          tbody
+            each list in data
+              tr
+                td=list.id
+                td=`${list.first_name} ${list.last_name}`
+                td=list.email
+                td=list.item
+                td=list.quantity
+                td=list.price * list.quantity
+      button.btn-primary#button-pivot PIVOT
+      | 
+      button(onclick='history.go(0)').btn-success#button-normal NORMAL
+
+  script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous")
+  script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous")
+            
+
+script.
+  function reload() {
+
+  }
+  $("#button-pivot" ).click(function() {
+    // transfor data
+    var dataOrder = !{JSON.stringify(data)}
+    var dataItem = []
+    dataOrder.forEach(function(entrie) {
+      var check = dataItem.indexOf(entrie.item);
+      if (dataItem.indexOf(entrie.item) < 0) {
+        dataItem.push(entrie.item)
+      }
+    });
+
+    dataItem.sort();
+    var newData = [];
+    dataOrder.forEach(function(entrie) {
+      dataItem.forEach(function(entrieItem) {
+        
+        if (entrieItem == entrie.item) {
+          entrie[entrieItem] = entrie.quantity
+        } else {
+          entrie[entrieItem] = 0;
+        }
+      });
+      newData.push(entrie);
+    })
+
+
+    var dinamcColumt = '';
+    dataItem.forEach(function(entrie) {
+      dinamcColumt = dinamcColumt + "<th>"+entrie+"</th>";
+    })
+
+    var showRow = '';
+    newData.forEach(function(entrie, i) {
+      showRow = showRow + 
+        `<tr>
+          <td>${entrie.first_name} ${entrie.last_name}</td>
+          <td>${entrie.email}</td>`;
+
+      dataItem.forEach(function(entrieItem) {
+        showRow = showRow + `<td>${newData[i][entrieItem]}</td>`
+      });
+
+      showRow = showRow + '</tr>';
+    })
+
+    $("#content-table").html(`
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            ${dinamcColumt}
+          </tr>
+        </thead>
+        <tbody>
+          ${showRow}
+        </tbody>
+      </table>`)
+  });

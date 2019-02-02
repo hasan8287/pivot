@@ -1,0 +1,22 @@
+{
+  "name": "pivot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bookshelf": "^0.14.2",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jade-bootstrap": "^1.0.14",
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.9",
+    "pug": "^2.0.3"
+  }
+}
