@@ -10,5 +10,5 @@ app.set('view engine', 'pug');
 app.use(route);
 
 app.listen(process.env.PORT, process.env.HOST, () => {
-  console.log(`Example app listening on port ${process.env.HOST}:${process.env.PORT}!`)
+  console.log(`listening on port ${process.env.HOST}:${process.env.PORT}!`)
 })

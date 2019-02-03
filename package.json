@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/index.spec --timeout 120000",
     "dev": "nodemon src/index"
   },
   "author": "",
@@ -18,5 +18,10 @@
     "mysql": "^2.16.0",
     "nodemon": "^1.18.9",
     "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mocha": "^5.2.0"
   }
 }

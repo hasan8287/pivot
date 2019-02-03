@@ -4,6 +4,6 @@ const controller = require('./controller');
 
 const routes = express.Router();
 
-routes.get('/', controller.getData);
+routes.get('/order', controller.getData);
 
 module.exports = routes;
