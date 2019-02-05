@@ -4,13 +4,14 @@ PIVOT
 	- mariadb/mysql
 
 - RUN
-	- SET CONFIG ON .env
+	- Set config ON .env
 	- npm install
-	- SETUP DB
-		- create db
+	- Migrate DB
+		- create db manual
 		- ./node_modules/.bin/knex migrate:latest
 		- ./node_modules/.bin/knex seed:run
 	- npm run dev
+  - go to host:port/order
 - TEST
 	- setup like RUN
 	- npm run test

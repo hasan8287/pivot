@@ -11,10 +11,14 @@ controller.getData = async (req, res) => {
       page: 1,
     });
 
-    return res.render('index', { title: 'Order', data: data.toJSON(), sub_titile: 'data order' })
+    return res.render('index', {
+      title: 'Order',
+      data: data.toJSON(),
+      sub_titile: 'data order',
+    });
   } catch (error) {
     return res.render('err', { message: error.message });
-  }  
+  }
 };
 
 module.exports = controller;
